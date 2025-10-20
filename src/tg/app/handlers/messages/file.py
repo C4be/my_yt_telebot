@@ -12,7 +12,8 @@ SUPPORTED_EXTENSIONS = [".txt"]
 # Обрабатываем документы с поддерживаемыми расширениями
 @router.message(
     (F.document & F.document.file_name.regexp(r'\.txt$')) | 
-    (F.forward_from.as_("forwarded") & F.document & F.document.file_name.regexp(r'\.txt$'))
+    (F.forward_from.as_("forwarded") & F.document & F.document.file_name.regexp(r'\.txt$')) |
+    (F.reply_to_message & F.reply_to_message.document & F.reply_to_message.document.file_name.regexp(r'\.txt$'))
 )
 async def file_handler(message: Message):
     document: Document = message.document

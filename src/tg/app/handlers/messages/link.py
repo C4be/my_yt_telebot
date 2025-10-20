@@ -17,7 +17,8 @@ router = Router()
 
 @router.message(
     F.text.regexp(r'^https?://') |
-    (F.forward_from.as_("forwarded") &  F.text.regexp(r'^https?://'))
+    (F.forward_from.as_("forwarded") &  F.text.regexp(r'^https?://')) |
+    (F.reply_to_message & F.reply_to_message.text.regexp(r'^https?://'))
 )
 async def links_handler(message: Message) -> None:
     try:

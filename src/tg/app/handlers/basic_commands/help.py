@@ -14,7 +14,7 @@ router = Router()
 
 @router.message(Command('help'))
 async def start_handler(message: Message) -> None:
-    logging.INFO(f'\help команда от {message.from_user.id}')
+    logging.info(f'\help команда от {message.from_user.id}')
     await message.answer(
         "Я пока не написал этот раздел"
     )

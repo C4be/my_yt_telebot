@@ -14,7 +14,7 @@ router = Router()
 
 @router.message(Command('start'))
 async def start_handler(message: Message) -> None:
-    logging.INFO(f'\help команда от {message.from_user.id}')
+    logging.info(f'\help команда от {message.from_user.id}')
     await message.answer(
         "Привет, я бот, через который ты сможешь грузить и загружать видео на YT/TT автоматически!"
     )
