@@ -3,7 +3,10 @@ from aiogram.types import Message, Video
 
 router = Router()
 
-@router.message(F.video)
+@router.message(
+    F.video |
+    (F.forward_from.as_("forwarded") & F.video)
+)
 async def video_handler(message: Message):
     video: Video = message.video
 

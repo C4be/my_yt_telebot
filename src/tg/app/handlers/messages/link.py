@@ -15,7 +15,10 @@ logger = logging.getLogger(__name__)
 
 router = Router()
 
-@router.message(F.text.regexp(r'^https?://'))
+@router.message(
+    F.text.regexp(r'^https?://') |
+    (F.forward_from.as_("forwarded") &  F.text.regexp(r'^https?://'))
+)
 async def links_handler(message: Message) -> None:
     try:
         link_data = LinkModel(link=message.text)
