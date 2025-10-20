@@ -3,8 +3,6 @@ from aiogram.filters import Command
 from aiogram.types import Message
 import logging
 
-router = Router()
-
 # Настройка логгера
 logging.basicConfig(
     level=logging.INFO,
@@ -12,6 +10,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+router = Router()
 
 @router.message(Command('start'))
 async def start_handler(message: Message) -> None:
