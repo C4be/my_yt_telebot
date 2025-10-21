@@ -2,13 +2,13 @@ from typing import Any, Optional
 from pathlib import Path
 import aiofiles
 import json
-from my_log import LogManager
+from utils.my_log import LogManager
 
 
-_logger = LogManager.new_logger("File_manager", to_file=True)
+_logger = LogManager.new_logger("FileManager", to_file=True)
 
 
-async def read_metadata(path: Path) -> Optional[Any]:
+async def read_metadata_json(path: Path) -> Optional[Any]:
     """
     Безопасно читает JSON-файл и возвращает его содержимое.
     Возвращает None, если файл не найден или повреждён.
@@ -28,14 +28,3 @@ async def read_metadata(path: Path) -> Optional[Any]:
         _logger.exception(f"Неизвестная ошибка при чтении `{path}`: {e}")
 
     return None
-
-
-# if __name__ == "__main__":
-#     # Example Usage
-#     import asyncio
-#     async def main():
-#         path = Path("metadata.json")
-#         data = await read_metadata(path)
-#         print(data)
-        
-#     asyncio.run(main())

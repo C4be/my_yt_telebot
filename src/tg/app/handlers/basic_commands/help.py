@@ -1,20 +1,19 @@
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
-import logging
+
+from utils.my_log import LogManager
+from services.help_service import get_help_message
 
 # Настройка логгера
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - [%(levelname)s] - %(name)s - %(message)s",
-)
-logger = logging.getLogger(__name__)
+_logger = LogManager.new_logger("HelpHandler")
 
 router = Router()
 
 @router.message(Command('help'))
 async def start_handler(message: Message) -> None:
-    logging.info(f'\help команда от {message.from_user.id}')
+    _logger.info(f'\help команда от {message.from_user.id}')
+    answer = await get_help_message()
     await message.answer(
-        "Я пока не написал этот раздел"
+        answer
     )
