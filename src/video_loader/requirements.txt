@@ -1,0 +1,7 @@
+fastapi
+python-dotenv
+aiohttp
+aiofiles
+uvicorn
+certifi
+yt_dlp
