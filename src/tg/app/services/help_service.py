@@ -1,5 +1,4 @@
-from utils.files import read_metadata_json
-from utils.my_log import LogManager
+from utils import LogManager, read_metadata_json
 
 
 _logger = LogManager.new_logger("HelpService")

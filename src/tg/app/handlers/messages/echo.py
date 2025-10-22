@@ -1,6 +1,8 @@
 from aiogram import Router, F
 from aiogram.types import Message
 
+from services import get_echo_answer
+
 router = Router()
 
 
@@ -19,21 +21,5 @@ async def echo_handler(message: Message):
 # Обработчик для всех остальных типов сообщений
 @router.message()
 async def unknown_message_handler(message: Message):
-    # Определяем тип сообщения для более информативного ответа
-    message_type = "неизвестный тип"
-    if message.photo:
-        message_type = "фото"
-    elif message.sticker:
-        message_type = "стикер"
-    elif message.voice:
-        message_type = "голосовое сообщение"
-    elif message.audio:
-        message_type = "аудио"
-    elif message.animation:
-        message_type = "анимация"
-    elif message.location:
-        message_type = "геолокация"
-
-    await message.answer(
-        f"Получено сообщение типа '{message_type}'. Я обрабатываю только текст, ссылки, видео и документы."
-    )
+    answer = await get_echo_answer(message)
+    await message.answer(answer)

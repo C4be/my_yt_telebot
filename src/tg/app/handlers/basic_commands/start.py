@@ -2,8 +2,8 @@ from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
 
-from utils.my_log import LogManager
-from services.start_service import get_hello_message
+from utils import LogManager
+from services import get_hello_message
 
 _logger = LogManager.new_logger("StartHandler")
 
