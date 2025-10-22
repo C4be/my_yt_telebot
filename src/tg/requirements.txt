@@ -1,5 +1,6 @@
 # Telebot
 aiogram
+aiosqlite
 
 # Security
 python-dotenv

@@ -2,6 +2,7 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher
 from config import TOKEN
+from database import init_db
 
 from handlers import (
     start_router,
@@ -14,6 +15,10 @@ from handlers import (
 
 # Create logger
 logging.basicConfig(level=logging.INFO)
+
+
+async def init_data_base():
+    await init_db()
 
 
 def init_dispatcher() -> Dispatcher:

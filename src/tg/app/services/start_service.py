@@ -1,4 +1,6 @@
+from aiogram.types import Message
 from utils import LogManager, read_metadata_json
+from database import upsert_user
 
 _logger = LogManager.new_logger("StartServiceLogger")
 
@@ -33,3 +35,11 @@ async def get_hello_message(user_id: int) -> str:
     return data["answers"]["returning_user"].format(
         name=user_id, abilities=data["abilities"], authors_info=thanks
     )
+
+
+async def add_user(db, message: Message):
+    tg_id = message.from_user.id
+    username = message.from_user.username
+    full_name = f"{message.from_user.last_name or ''} {message.from_user.first_name or ''}".strip()
+    birthday = None
+    await upsert_user(db, tg_id, username, full_name, birthday)
