@@ -3,10 +3,11 @@ from aiogram.types import Message
 
 router = Router()
 
+
 @router.message(
-    F.video |
-    (F.forward_from | F.forward_from_chat) & (F.video | F.document) |
-    (F.reply_to_message & (F.reply_to_message.video | F.reply_to_message.document))
+    F.video
+    | (F.forward_from | F.forward_from_chat) & (F.video | F.document)
+    | (F.reply_to_message & (F.reply_to_message.video | F.reply_to_message.document))
 )
 async def video_handler(message: Message):
     # Сначала берём видео
@@ -24,7 +25,7 @@ async def video_handler(message: Message):
     await message.answer(
         f"🎬 Видео получено!\n"
         f"Файл ID: {file_id}\n"
-        f"Размер: {file_size / (1024*1024):.2f} MB\n"
+        f"Размер: {file_size / (1024 * 1024):.2f} MB\n"
         f"Длительность: {duration} секунд\n"
         f"Ширина/Высота: {width}x{height}"
     )

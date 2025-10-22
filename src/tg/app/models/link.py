@@ -5,7 +5,7 @@ class LinkModel(BaseModel):
     link: HttpUrl
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         data = LinkModel(link="https://example.com/test")
         print("Корректно:", data.link)

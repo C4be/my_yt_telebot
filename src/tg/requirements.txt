@@ -1,2 +1,8 @@
+# Telebot
 aiogram
+
+# Security
 python-dotenv
+
+# Linter and Formatter
+ruff

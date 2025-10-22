@@ -10,10 +10,9 @@ _logger = LogManager.new_logger("HelpHandler")
 
 router = Router()
 
-@router.message(Command('help'))
+
+@router.message(Command("help"))
 async def start_handler(message: Message) -> None:
-    _logger.info(f'\help команда от {message.from_user.id}')
+    _logger.info(f"\help команда от {message.from_user.id}")
     answer = await get_help_message()
-    await message.answer(
-        answer
-    )
+    await message.answer(answer)

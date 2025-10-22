@@ -17,7 +17,6 @@ class LogManager:
     _LOG_FROMAT = "%(asctime)s - [%(levelname)s] - %(name)s - %(message)s"
     _ENCODING = "utf-8"
 
-
     @staticmethod
     def _get_daily_log_dir() -> Path:
         """Возвращает директорию текущего дня, создавая её при необходимости."""
@@ -26,9 +25,10 @@ class LogManager:
         daily_dir.mkdir(parents=True, exist_ok=True)
         return daily_dir
 
-
     @staticmethod
-    def new_logger(name: str, to_file: bool = True, level: int = logging.INFO) -> logging.Logger:
+    def new_logger(
+        name: str, to_file: bool = True, level: int = logging.INFO
+    ) -> logging.Logger:
         """
         Создаёт новый логгер с именем `name`.
 
@@ -64,7 +64,6 @@ class LogManager:
             logger.addHandler(file_handler)
 
         return logger
-
 
     @staticmethod
     def clear_old_logs() -> None:
