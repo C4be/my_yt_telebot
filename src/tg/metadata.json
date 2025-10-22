@@ -43,7 +43,6 @@
             }
         },
         "command_help": {
-            "description": "Отображает список всех доступных команд и их описание.",
             "answers": {
                 "default": "Вот что я умею:\n\n{abilities}"
             }
