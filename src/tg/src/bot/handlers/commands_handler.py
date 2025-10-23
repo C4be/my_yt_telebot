@@ -8,9 +8,9 @@ from db import get_db_session
 from domain.services import UserService
 
 # constants
-__COMMAND: str = "commands"
+__COMMAND: str = "basic_commands"
 __NAME: str = f"{__COMMAND}_handler"
-__LOGGER: str = new_logger(name=__NAME, to_file=False)
+__LOGGER = new_logger(name=__NAME, to_file=False)
 
 router = Router(name=__NAME)
 

@@ -32,6 +32,11 @@ DATABASE_URL = (
     f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
+# ===== DB MONGO =====
+MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "my_telebot_db")
+MONGO_DB_PORT = os.getenv("MONGO_DB_PORT", "my_telebot_db")
+MONGO_DB_URL = f"mongodb://{MONGO_DB_NAME}:{MONGO_DB_PORT}"
+
 # ===== Strings Templates =====
 COMMAND_USE: str = "Команда {command} поступила от {user_name}[{user_id}]"
 START_INFO: str = """

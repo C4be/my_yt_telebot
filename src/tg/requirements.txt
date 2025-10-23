@@ -1,8 +1,14 @@
 # Telebot
 aiogram
+
+# Postgre
 sqlalchemy
 psycopg2-binary
 asyncpg
+
+# MongoDB
+motor
+pymongo
 
 # Security
 python-dotenv

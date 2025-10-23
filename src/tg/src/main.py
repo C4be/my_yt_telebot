@@ -4,13 +4,14 @@ import logging
 from aiogram import Bot, Dispatcher
 
 # my imports
-from bot.handlers import start_router
+from bot.handlers import start_router, video_router
 from core.config import BOT_TOKEN
 from core.logging import ensure_log_directories
-from db import init_db
+from db import init_db, init_mongo
 
 __ROUTERS = [
     start_router,
+    video_router,
 ]
 
 
@@ -22,6 +23,8 @@ async def main():
     # Инициализация базы данных
     await init_db()
     logging.getLogger("startup").info("🐘 База данных инициализирована")
+    await init_mongo()
+    logging.getLogger("startup").info("🗂️ База данных MONGO инициализирована")
 
     # Инициализация компонентов
     bot = Bot(token=BOT_TOKEN)
