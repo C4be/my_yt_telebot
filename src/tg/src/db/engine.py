@@ -16,12 +16,14 @@ AsyncSessionLocal = sessionmaker(
     autocommit=False,
 )
 
+
 async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
     """
     Создает и возвращает асинхронную сессию базы данных
     """
     async with AsyncSessionLocal() as session:
         yield session
+
 
 async def init_db():
     """

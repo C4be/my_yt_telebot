@@ -1,12 +1,14 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.sql.sqltypes import BigInteger
 
-from db.connection import Base
+from db.engine import Base
+
 
 class User(Base):
     """
     Модель пользователя в базе данных
     """
+
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)

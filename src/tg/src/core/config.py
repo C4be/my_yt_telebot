@@ -7,16 +7,17 @@ BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 LOGS_BASE_DIR: Path = BASE_DIR / "logs"
 
 # ===== Load secrets =====
-load_dotenv(BASE_DIR / "secrets" / "bot.env", override=True)
-load_dotenv(BASE_DIR / "secrets" / "db.env", override=True)
+if os.getenv("FROM_DOCKER", "NO") == "YES":
+    load_dotenv(BASE_DIR / "secrets" / "bot.env", override=True)
+    load_dotenv(BASE_DIR / "secrets" / "db.env", override=True)
 
 # ===== Telegram =====
-BOT_TOKEN: str | None = os.getenv("TG_BOT_TOKEN", None)
+BOT_TOKEN: str | None = os.getenv("BOT_TOKEN", None)
 if not BOT_TOKEN:
-    raise ValueError("❌ Не найден TG_BOT_TOKEN в secrets.env или переменных окружения")
+    raise ValueError("❌ Не найден BOT_TOKEN в *.env или переменных окружения")
 
 # ===== Logs =====
-LOGS_DATE_DIR_FORMAT: str = "%d-%m-%Y"            # формат имени директории логов
+LOGS_DATE_DIR_FORMAT: str = "%d-%m-%Y"  # формат имени директории логов
 LOGS_DATE_TIME_FROMAT: str = "%Y-%m-%d %H:%M:%S"  # формат метки времени в логе
 LOGS_LOG_FROMAT: str = "%(asctime)s - [%(levelname)s] - %(name)s - %(message)s"
 LOGS_ENCODING: str = "utf-8"
@@ -27,7 +28,9 @@ DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME", "yt_telebot")
 DB_USER = os.getenv("DB_USER", "postgres")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "postgres")
-DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DATABASE_URL = (
+    f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
 
 # ===== Strings Templates =====
 COMMAND_USE: str = "Команда {command} поступила от {user_name}[{user_id}]"

@@ -17,7 +17,7 @@ from core.config import (
 
 _LOGGER_CACHE: dict[str, logging.Logger] = {}
 
-    
+
 def ensure_log_directories() -> None:
     """
     Синхронно создаёт базовую директорию для логов и
@@ -30,14 +30,15 @@ def ensure_log_directories() -> None:
     daily_dir.mkdir(parents=True, exist_ok=True)
 
 
-
 def _get_daily_log_dir() -> Path:
     """Возвращает директорию для текущего дня."""
     date_str = datetime.now().strftime(LOGS_DATE_DIR_FORMAT)
     return Path(LOGS_BASE_DIR) / date_str
 
 
-def new_logger(name: str, to_file: bool = True, level: int = logging.INFO) -> logging.Logger:
+def new_logger(
+    name: str, to_file: bool = True, level: int = logging.INFO
+) -> logging.Logger:
     """
     Создаёт и возвращает настроенный логгер для компонента.
     Использовать через: `logger = new_logger(__name__)`
@@ -78,9 +79,7 @@ async def clear_old_logs(keep_days: int = 1) -> Tuple[str, bool]:
         return "Папка логов отсутствует — ничего не удалено.", False
 
     dirs = sorted(
-        [d for d in base.iterdir() if d.is_dir()],
-        key=lambda p: p.name,
-        reverse=True
+        [d for d in base.iterdir() if d.is_dir()], key=lambda p: p.name, reverse=True
     )
     today = datetime.now().strftime(LOGS_DATE_DIR_FORMAT)
     deleted: List[str] = []
@@ -96,14 +95,14 @@ async def clear_old_logs(keep_days: int = 1) -> Tuple[str, bool]:
                 deleted.append(f"⚠️ Ошибка при удалении {directory.name}: {e}")
 
     deleted.append("✅ Очистка завершена.")
-    return '\n'.join(deleted), True
+    return "\n".join(deleted), True
 
 
 def get_command_use_str(command: str, message: Message) -> str:
     user_name: str = message.from_user.username
     user_id: int = message.from_user.id
     return COMMAND_USE.format(
-        command = command,
-        user_name = user_name,
-        user_id = user_id,
+        command=command,
+        user_name=user_name,
+        user_id=user_id,
     )

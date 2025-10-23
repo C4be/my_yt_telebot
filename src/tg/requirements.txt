@@ -2,6 +2,7 @@
 aiogram
 sqlalchemy
 psycopg2-binary
+asyncpg
 
 # Security
 python-dotenv
