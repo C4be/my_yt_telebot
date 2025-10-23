@@ -1,6 +1,7 @@
 # Telebot
 aiogram
-aiosqlite
+sqlalchemy
+psycopg2-binary
 
 # Security
 python-dotenv

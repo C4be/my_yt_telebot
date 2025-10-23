@@ -10,4 +10,7 @@ ruff check . --fix
 echo "✨ Форматирование кода Ruff..."
 ruff format .
 
+echo "🗑️ Очистка кэша..."
+find . -type d -name "__pycache__" -exec rm -rf {} +
+
 echo "✅ Готово!"
