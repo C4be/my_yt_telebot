@@ -1,7 +1,11 @@
+# api
 fastapi
+certifi
+
 python-dotenv
 aiohttp
 aiofiles
 uvicorn
-certifi
+
+# utils
 yt_dlp
